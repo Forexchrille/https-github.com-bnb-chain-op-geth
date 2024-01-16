@@ -459,12 +459,6 @@ var (
 		Value:    ethconfig.Defaults.TxPool.Lifetime,
 		Category: flags.TxPoolCategory,
 	}
-	TxPoolReannounceTimeFlag = &cli.DurationFlag{
-		Name:     "txpool.reannouncetime",
-		Usage:    "Duration for announcing local pending transactions again (default = 10 years, minimum = 1 minute)",
-		Value:    ethconfig.Defaults.TxPool.ReannounceTime,
-		Category: flags.TxPoolCategory,
-	}
 
 	// Performance tuning settings
 	CacheFlag = &cli.IntFlag{
@@ -1659,9 +1653,6 @@ func setTxPool(ctx *cli.Context, cfg *txpool.Config) {
 	}
 	if ctx.IsSet(TxPoolLifetimeFlag.Name) {
 		cfg.Lifetime = ctx.Duration(TxPoolLifetimeFlag.Name)
-	}
-	if ctx.IsSet(TxPoolReannounceTimeFlag.Name) {
-		cfg.ReannounceTime = ctx.Duration(TxPoolReannounceTimeFlag.Name)
 	}
 }
 
